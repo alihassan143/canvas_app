@@ -15,11 +15,19 @@ class DrawingPage extends ConsumerWidget {
     final layoutstate = ref.watch(layoutProvider);
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          ref.read(layoutProvider.notifier).erase =
+              !ref.read(layoutProvider.notifier).erase;
+        },
+        child: const Icon(Icons.remove),
+      ),
       body: Stack(
         children: [
           RepaintBoundary(
             key: globalkey,
-            child: SizedBox(
+            child: Container(
+              color: Colors.white,
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               child: CustomPaint(
