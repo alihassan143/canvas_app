@@ -1,16 +1,29 @@
-# canvasapp
+# Canvas App
 
 A new Flutter project.
 
-## Getting Started
+## Working with Custom Painter
 
-This project is a starting point for a Flutter application.
+## Folder Structure
 
-A few resources to get you started if this is your first Flutter project:
+## Directory Structure for project
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```
+├───src
+│   ├───customsketcher
+│   ├───model
+│   ├───providers
+│   ├───screens
+ 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+## Dependencies
+  
+```
+flutter_riverpod: ^2.0.2
+ 
+
+```
+
+https://user-images.githubusercontent.com/71745182/196929113-039c9647-723b-432e-8d70-545690638967.mov
+
