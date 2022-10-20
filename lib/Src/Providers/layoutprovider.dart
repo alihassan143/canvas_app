@@ -16,8 +16,8 @@ class LayOutNotifier extends StateNotifier<LayoutModel> {
     Offset offset = renderBox.globalToLocal(details.globalPosition);
     DrawClass line = DrawClass(
         paths: [offset],
-        strokeWidth: 2,
-        color: Colors.red,
+        strokeWidth: erase ? 5 : 2,
+        color: erase ? Colors.white : Colors.red,
         mode: erase ? BlendMode.clear : BlendMode.srcOver);
     LayoutModel model = state.copyWith();
     model.line = line;
@@ -29,12 +29,12 @@ class LayOutNotifier extends StateNotifier<LayoutModel> {
     Offset offset = renderBox.globalToLocal(details.globalPosition);
     LayoutModel model = state.copyWith();
     List<Offset> path = List.from(model.line!.paths)..add(offset);
-    DrawClass line = DrawClass(paths: path, strokeWidth: 2, color: Colors.red);
-    line = DrawClass(
+    DrawClass line = DrawClass(
         paths: path,
-        strokeWidth: 2,
-        color: Colors.red,
+        strokeWidth: erase ? 5 : 2,
+        color: erase ? Colors.white : Colors.red,
         mode: erase ? BlendMode.clear : BlendMode.srcOver);
+
     model.line = line;
     state = model;
   }

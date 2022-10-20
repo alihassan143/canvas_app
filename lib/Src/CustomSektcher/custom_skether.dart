@@ -11,11 +11,13 @@ class CustomSkethcer extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    canvas.saveLayer(Rect.fromLTWH(0, 0, size.width, size.height), Paint());
     for (var mainLines in lines) {
       Paint paint = Paint();
 
       paint.blendMode = mainLines.mode;
-
+      paint.style = PaintingStyle.stroke;
+      paint.strokeWidth = mainLines.strokeWidth;
       paint.color = mainLines.color;
 
       paint.strokeWidth = mainLines.strokeWidth;
@@ -23,6 +25,8 @@ class CustomSkethcer extends CustomPainter {
         canvas.drawLine(mainLines.paths[j], mainLines.paths[j + 1], paint);
       }
     }
+
+    canvas.restore();
   }
 
   @override
