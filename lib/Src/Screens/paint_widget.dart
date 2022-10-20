@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
+import '../CustomSektcher/custom_skether.dart';
 import '../Providers/layoutprovider.dart';
 
 class PaintingWidget extends ConsumerWidget {
@@ -8,6 +9,7 @@ class PaintingWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+    final layoutstate = ref.watch(layoutProvider);
     return SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -21,7 +23,9 @@ class PaintingWidget extends ConsumerWidget {
           onPanEnd: (detail) => ref
               .read(layoutProvider.notifier)
               .onPanEnd(detail, context: context),
-          child: const Text(""),
+          child: CustomPaint(
+              painter: CustomSkethcer(
+                  lines: layoutstate.line != null ? [layoutstate.line!] : [])),
         ));
   }
 }

@@ -9,33 +9,42 @@ final layoutProvider = StateNotifierProvider<LayOutNotifier, LayoutModel>(
 
 class LayOutNotifier extends StateNotifier<LayoutModel> {
   LayOutNotifier() : super(LayoutModel(lines: []));
-  DrawClass? line;
+
   bool erase = false;
   void panStart(DragStartDetails details, {required BuildContext context}) {
     RenderBox renderBox = context.findRenderObject() as RenderBox;
     Offset offset = renderBox.globalToLocal(details.globalPosition);
-    line = DrawClass(
+    DrawClass line = DrawClass(
         paths: [offset],
         strokeWidth: 2,
         color: Colors.red,
         mode: erase ? BlendMode.clear : BlendMode.srcOver);
+    LayoutModel model = state.copyWith();
+    model.line = line;
+    state = model;
   }
 
   void onPanUpdate(DragUpdateDetails details, {required BuildContext context}) {
     RenderBox renderBox = context.findRenderObject() as RenderBox;
     Offset offset = renderBox.globalToLocal(details.globalPosition);
     LayoutModel model = state.copyWith();
-    List<Offset> path = List.from(line!.paths)..add(offset);
+    List<Offset> path = List.from(model.line!.paths)..add(offset);
+    DrawClass line = DrawClass(paths: path, strokeWidth: 2, color: Colors.red);
     line = DrawClass(
         paths: path,
         strokeWidth: 2,
         color: Colors.red,
         mode: erase ? BlendMode.clear : BlendMode.srcOver);
-    model.lines = model.lines..add(line!);
+    model.line = line;
     state = model;
   }
 
   void onPanEnd(DragEndDetails details, {required BuildContext context}) {
-    line = null;
+    LayoutModel model = state.copyWith();
+
+    List<DrawClass> lines = model.lines..add(model.line!);
+    model.lines = lines;
+    model.line = null;
+    state = model;
   }
 }

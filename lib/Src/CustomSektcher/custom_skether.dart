@@ -13,15 +13,10 @@ class CustomSkethcer extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     for (var mainLines in lines) {
       Paint paint = Paint();
-      if (mainLines.mode == BlendMode.clear) {
-        paint.color = Colors.white;
-        paint.blendMode = BlendMode.clear;
-      } else {
-        paint.isAntiAlias = true;
-        paint.blendMode = mainLines.mode;
 
-        paint.color = mainLines.color;
-      }
+      paint.blendMode = mainLines.mode;
+
+      paint.color = mainLines.color;
 
       paint.strokeWidth = mainLines.strokeWidth;
       for (int j = 0; j < mainLines.paths.length - 1; j++) {
