@@ -11,7 +11,7 @@ class CustomSkethcer extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.saveLayer(Rect.fromLTWH(0, 0, size.width, size.height), Paint());
+    canvas.saveLayer(Offset.zero & size, Paint());
     for (var mainLines in lines) {
       Paint paint = Paint();
 
