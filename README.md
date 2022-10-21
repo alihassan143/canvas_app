@@ -1,12 +1,10 @@
 # Canvas App
 
-A new Flutter project.
 
 ## Working with Custom Painter
 
 ## Folder Structure
 
-## Directory Structure for project
 
 ```
 ├───src
