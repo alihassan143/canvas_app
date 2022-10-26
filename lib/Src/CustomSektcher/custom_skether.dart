@@ -16,7 +16,7 @@ class CustomSkethcer extends CustomPainter {
       Paint paint = Paint();
 
       paint.blendMode = mainLines.mode;
-      paint.style = PaintingStyle.stroke;
+
       paint.strokeWidth = mainLines.strokeWidth;
       paint.color = mainLines.color;
 
